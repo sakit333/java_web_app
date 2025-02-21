@@ -3,6 +3,6 @@ WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 FROM tomcat:9.0
-COPY --from=builder /app/target/students.war /usr/local/tomcat/webapps/app.war
+COPY --from=builder /app/target/students.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
