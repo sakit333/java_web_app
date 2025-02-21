@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: java_web_app:latest
+          image: sakit333/java_web_app:latest
           ports:
             - containerPort: 8080
 ---
