@@ -1,0 +1,12 @@
+---
+- name: webapp deployment
+  hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: copy war file to tomcat
+      copy:
+        src: /home/ansible/students.war
+        dest: /root/apache-tomcat-9.0.100/webapps
