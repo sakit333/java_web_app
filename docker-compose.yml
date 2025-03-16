@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  sak-app:
+    container_name: sak-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sakit333/sak-app:latest 
+    ports:
+      - "8080:8080"
+    restart: always
+
+  push-to-dockerhub:
+    image: docker:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      sh -c '
+        VERSION=$(date +%d-%m-%Y)
+        docker tag sakit333/students:latest sakit333/students:$VERSION &&
+        echo "Enter Docker Hub password:" &&
+        docker login -u "sakit333" --password-stdin  &&
+        docker push sakit333/students:$VERSION &&
+        echo "Image pushed successfully with tag: $VERSION"
+      '
+
